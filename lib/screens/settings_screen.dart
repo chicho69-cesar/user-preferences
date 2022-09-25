@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:user_preferences/widgets/widgets.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
   static const String routeName = 'settings';
-  
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool isDarkmode = false;
+  int gender = 1;
+  String name = 'Cesar';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +37,12 @@ class SettingsScreen extends StatelessWidget {
               const Divider(),
 
               SwitchListTile(
-                value: true, 
+                value: isDarkmode, 
                 title: const Text('Darkmode'),
                 onChanged: (value) {
-
+                  setState(() {
+                    isDarkmode = value;
+                  });
                 }
               ),
 
@@ -39,10 +50,12 @@ class SettingsScreen extends StatelessWidget {
 
               RadioListTile<int>(
                 value: 1, // 1 - Masculino y 2 - Femenino
-                groupValue: 1, 
+                groupValue: gender, 
                 title: const Text('Masculino'),
                 onChanged: (value) {
-
+                  setState(() {
+                    gender = value ?? 1;
+                  });
                 }
               ),
 
@@ -50,10 +63,12 @@ class SettingsScreen extends StatelessWidget {
 
               RadioListTile<int>(
                 value: 2, // 1 - Masculino y 2 - Femenino
-                groupValue: 1, 
+                groupValue: gender, 
                 title: const Text('Femenino'),
                 onChanged: (value) {
-
+                  setState(() {
+                    gender = value ?? 2;
+                  });
                 }
               ),
 
@@ -62,7 +77,12 @@ class SettingsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
-                  initialValue: 'Cesar',
+                  initialValue: name,
+                  onChanged: (value) {
+                    setState(() {
+                      name = value;
+                    });
+                  },
                   decoration: const InputDecoration(
                     labelText: 'Nombre',
                     helperText: 'Nombre del usuario'
