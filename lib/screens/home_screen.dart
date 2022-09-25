@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:user_preferences/widgets/widgets.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -11,8 +13,17 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: const Center(
-        child: Text('HomeScreen'),
+      drawer: const SideMenu(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Text('isDarkmode: '),
+          Divider(),
+          Text('Genero: '),
+          Divider(),
+          Text('Nombre de usuario: '),
+          Divider(),
+        ],
       ),
     );
   }
